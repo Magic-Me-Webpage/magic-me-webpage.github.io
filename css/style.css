@@ -1429,3 +1429,29 @@ footer a:hover {
 .video-editting-showcase {
   background-color: black;
 }
+
+.video-container-showcase {
+  position: relative;
+  width: 23%; /* 视频的宽度 */
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 20px
+}
+
+.video-container-showcase video {
+  width: 100%;
+  height: auto;
+}
+
+.video-container-showcase-arrow {
+  position: relative;
+  width: 6.5%; /* 视频的宽度 */
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 20px
+}
+
+.video-container-showcase-arrow video {
+  width: 100%;
+  height: auto;
+}
