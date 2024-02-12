@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  		<title>Magic-Me</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/fontAwesome.css">
+        <link rel="stylesheet" href="css/light-box.css">
+        <link rel="stylesheet" href="css/style.css">
+
+        <link href="https://fonts.googleapis.com/css?family=Kanit:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </head>
+
+<body>
+<script>
+function is_mobile() {
+          var uai = navigator.userAgent;
+          var Agents = ['Android', 'iPhone'];
+          var gar = Agents.filter(i => uai.includes(i));
+          return gar.length ? true : false;
+       }
+       function mouseover(x) {
+             if(!is_mobile()){
+            x.style.opacity=0.3;
+            document.getElementsByName(x.id)[0].hidden=false;}
+       }
+       function mouseout(x) {
+               x.style.opacity = 1.0;
+               dv = document.getElementsByName(x.id)[0];
+               dv.hidden=true;
+       }
+  var data_list = [
+  {
+      'link':'./demo_video/superman/altman-gstep-200_00001.mp4',
+      'name': 'im1',
+      'header': '',
+      'text':'Snow rocky mountains peaks canyon. snow blanketed rocky mountains surround and shadow deep canyons. the canyons twist and bend through the high elevated mountain peaks.'
+    },
+    {
+      'link':'./demo_video/superman/bengio-gstep-400_00001.mp4',
+      'name': 'im2',
+      'header': '',
+      'text':'Splash of turquoise water in extreme slow motion, alpha channel included (full hd).'
+    },
+    {
+      'link':'./demo_video/superman/huang-gstep-200_00001.mp4',
+      'name': 'im3',
+      'header': '',
+      'text':'an ice cream is is melting on the table.'
+    },
+    {
+      'link':'./demo_video/cherry_blossoms/scarlett-gstep-600_00001.mp4',
+      'name': 'im4',
+      'header': '',
+      'text':'a drone flying over a snowy forest.'
+    },
+    {
+      'link':'./demo_video/cherry_blossoms/taylor-gstep-600_00001.mp4',
+      'name': 'im5',
+      'header': '',
+      'text':'a shark is swimming in the ocean.'
+    },
+    {
+      'link':'./demo_video/cherry_blossoms/monroe-gstep-600_00001.mp4',
+      'name': 'im5',
+      'header': '',
+      'text':'a shark is swimming in the ocean.'
+    },
+    {
+      'link':'./demo_video/walking/hermione-gstep-600_00001.mp4',
+      'name': 'im4',
+      'header': '',
+      'text':'a drone flying over a snowy forest.'
+    },
+    {
+      'link':'./demo_video/walking/lecun-gstep-200_00001.mp4',
+      'name': 'im5',
+      'header': '',
+      'text':'a shark is swimming in the ocean.'
+    },
+    {
+      'link':'./demo_video/walking/taylor-gstep-200_00001.mp4',
+      'name': 'im5',
+      'header': '',
+      'text':'a shark is swimming in the ocean.'
+    },
+    {
+      'link':'./demo_video/northern_lights/harry-gstep-200_00001.mp4',
+      'name': 'im4',
+      'header': '',
+      'text':'a drone flying over a snowy forest.'
+    },
+    {
+      'link':'./demo_video/northern_lights/ironman-gstep-200_00001.mp4',
+      'name': 'im5',
+      'header': '',
+      'text':'a shark is swimming in the ocean.'
+    },
+    {
+      'link':'./demo_video/northern_lights/monroe-gstep-200_00001.mp4',
+      'name': 'im5',
+      'header': '',
+      'text':'a shark is swimming in the ocean.'
+    },
+    {
+      'link':'./demo_video/desert/johnson-gstep-200_00001.mp4',
+      'name': 'im4',
+      'header': '',
+      'text':'a drone flying over a snowy forest.'
+    },
+    {
+      'link':'./demo_video/desert/musk-gstep-200_00001.mp4',
+      'name': 'im5',
+      'header': '',
+      'text':'a shark is swimming in the ocean.'
+    },
+    {
+      'link':'./demo_video/desert/bengio-gstep-200_00001.mp4',
+      'name': 'im5',
+      'header': '',
+      'text':'a shark is swimming in the ocean.'
+    },
+  ]
+  function shuffle(v) {
+    for(var j, x, i = v.length; i; j = parseInt(Math.random() * i), x = v[--i], v[i]=v[j], v[j]=x);
+    return v;
+  }
+
+  data_list = shuffle(data_list);
+
+</script>
+    <nav>
+        <div class="logo">
+            <a href="index.html">Magic-Me</a>
+        </div>
+        <span></span>
+      </div>
+    </nav>
+
+    <div id="video-container">
+        <div class="video-overlay"></div>
+        <div class="video-content">
+            <div class="inner">
+                <h1>Magic-Me</h1>
+                <p>Magic-Me: Identity-Specific Video Customized Diffusion</p>
+                <br/>
+                <p>Ze Ma<sup>*,1</sup>, Daquan Zhou<sup>*,1</sup>, Chun-Hsiao Yeh<sup>2</sup>, Xue-She Wang<sup>1</sup>, Xiuyu Li<sup>2</sup>, Huanrui Yang<sup>2</sup>, Zhen Dong<sup>2</sup>, Kurt Keutzer<sup>2</sup>, Jiashi Feng<sup>1</sup></p>
+                <p style="font-size: smaller">*Equal Contribution.</p>
+                <p> <sup>1</sup>ByteDance Inc, <sup>2</sup>UC Berkeley</p>
+                <br/><br/><br/>
+<!--                <button style="background-color: #555555; 
+                                border: none;
+                                color: white;
+                                padding: 15px 32px;
+                                text-align: center;
+                                text-decoration: none;
+                                display: inline-block;
+                                font-size: 16px;">
+                    <a href=""> Research Paper (soon to be released)</a>
+                </button>  -->
+                <div style="display: flex; justify-content: center; gap: 20px;">
+                    <button style="background-color: #555555; 
+                                    border: none;
+                                    color: white;
+                                    padding: 15px 32px;
+                                    text-align: center;
+                                    text-decoration: none;
+                                    display: inline-block;
+                                    font-size: 16px;">
+                        <a href=""> Research Paper (soon to be released)</a>
+                    </button>  
+                    <button style="background-color: #555555; 
+                                    border: none;
+                                    color: white;
+                                    padding: 15px 32px;
+                                    text-align: center;
+                                    text-decoration: none;
+                                    display: inline-block;
+                                    font-size: 16px;">
+                        <a href="https://github.com/Zhen-Dong/Magic-Me"> Github Repo</a>
+                    </button>  
+                    <button style="background-color: #555555; 
+                                    border: none;
+                                    color: white;
+                                    padding: 15px 32px;
+                                    text-align: center;
+                                    text-decoration: none;
+                                    display: inline-block;
+                                    font-size: 16px;">
+                        <a href="https://colab.research.google.com/drive/12mcMlWjMm3d7etovSCC1CxU4lk2d1bno?usp=sharing"> Colab Notebook </a>
+                    </button>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+    <div class="full-screen-portfolio" id="portfolio">
+        <div class="container-fluid">
+            <br/>
+            <div style="text-align: center; color: white; font-size: 40px;">
+                ID Specific Video Generation
+            </div>
+            <br/>
+            <div class="portfolio-item">
+                <div id='image-container'></div>
+            </div>
+        </div>
+    </div>
+<!--<div class="grid-portfolio" id="portfolio">
+    <div class="row" id="loadmorediv">
+        <div class="col-md-12">
+            <div class="load-more-button">
+                <a href="#" id='loadmore'>Load More</a>
+            </div>
+        </div>
+    </div>
+</div>-->
+
+
+<div class="video-editting-showcase">
+    <br/>
+    <br/>
+    <br/>
+
+    <div style="text-align: center; color: white; font-size: 40px;">
+        ID Specific Video Editing
+    </div>
+    <br/>
+    <p style="font-size:large">
+        
+    <div class="videos-flex-container">
+
+        <div class="video-container-demo-small">
+            <video width="250" height="200" autoplay loop muted>
+                <source src="./demo_video/video_editting/bainian_original.mp4" type="video/mp4">
+            </video>
+            <div class="overlay" style="text-align: center; color: white; font-size: 20px;">Original Video</div>
+        </div>
+        
+        <div class="video-container-demo-small">
+<!--            <div class="overlay" style="text-align: center; color: black; font-size: 20px;">arrow</div>-->
+            <video width="320" height="240" autoplay loop muted>
+                <source src="./demo_video/video_editting/right_arrow_white.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        <div class="video-container-demo-small">
+            <video width="320" height="240" autoplay loop muted>
+                <source src="./demo_video/video_editting/bainian_altman.mp4" type="video/mp4">
+            </video>
+            <div class="overlay" style="text-align: center; color: white; font-size: 20px;">Sam Altman</div>
+        </div>
+        
+        <div class="video-container-demo-small">
+            
+            <video width="320" height="240" autoplay loop muted>
+                <source src="./demo_video/video_editting/bainian_bengio.mp4" type="video/mp4">
+            </video>
+            <div class="overlay" style="text-align: center; color: white; font-size: 20px;">Yoshua Bengio</div>
+        </div>
+        
+        <div class="video-container-demo-small">
+            <video width="320" height="240" autoplay loop muted>
+                <source src="./demo_video/video_editting/bainian_zuck.mp4" type="video/mp4">
+            </video>
+            <div class="overlay" style="text-align: center; color: white; font-size: 20px;">Mark Zuckerberg</div>
+        </div>
+        
+    </div>  
+    </p>
+</div>
+
+<div class="heading-content">
+    <h1>Summary</h1>
+    <p style="font-size:large">
+        Creating contents for a specific identity (ID) has shown significant interest in the field of generative models. In the field of text-to-image generation (T2I), subject-driven content generation has achieved great progress with the ID in the images controllable. However, directly extending it to video generation is not well explored. 
+    </p>
+
+    <p style="font-size:large">
+        In this work, we propose a simple yet effective subject identity controllable video generation framework, termed Video Custom Diffusion (VCD). With a specified subject ID defined by a few images, VCD reinforces the identity information extraction and injects frame-wise correlation at the initialization stage for stable video outputs with identity preserved to a large extent. To achieve this, we propose three novel components that are essential for high-quality ID preservation: 1) an ID module trained with the cropped identity by prompt-to-segmentation to disentangle the ID information and the background noise for more accurate ID token learning; 2) a text-to-video (T2V) VCD module with 3D Gaussian Noise Prior for better inter-frame consistency and 3) video-to-video (V2V) Face VCD and Tiled VCD modules to deblur the face and upscale the video for higher resolution.
+    </p>
+    
+    <p style="font-size:large">
+        Despite of its simplicity, we conduct extensive experiments to verify that VCD is able to generate stable and high-quality videos with significantly better ID preservation capability over the selected strong baselines. Besides, due to the transferability of ID module, VCD is also working well with finetuned text-to-image models available publically, further improving its usability.
+    </p>
+    
+</div>
+
+    
+    
+<center>
+<img src="img/paper_pipeline_chart.jpg" width="80%"/><br>
+</center>
+
+<br>
+<br>
+
+<div class="heading-content">
+    <h1>ID Specific Video Generation Demos</h1>
+    <div class="header-container">
+        <h2>Superman</h2> 
+        <a href="./superman.html" class="view-more-button">View More</a>
+    </div>
+    <p style="font-size:large">
+        
+    <div class="videos-flex-container">
+
+        <div class="video-container-demo-small">
+            <div class="overlay">Jensen Huang</div>
+            <video width="320" height="240" autoplay loop muted>
+                <source src="./demo_video/superman/huang-gstep-200_00001.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        <div class="video-container-demo-small">
+            <div class="overlay">Marilyn Monroe</div>
+            <video width="320" height="240" autoplay loop muted>
+                <source src="./demo_video/superman/monroe-gstep-200_00001.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        <div class="video-container-demo-small">
+            <div class="overlay">Mark Zuckerberg</div>
+            <video width="320" height="240" autoplay loop muted>
+                <source src="./demo_video/superman/zuck-gstep-200_00001.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        <div class="video-container-demo-small">
+            <div class="overlay">Beyonce</div>
+            <video width="320" height="240" autoplay loop muted>
+                <source src="./demo_video/superman/beyonce-gstep-200_00001.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        <div class="video-container-demo-small">
+            <div class="overlay">Scarlett Johansson</div>
+            <video width="320" height="240" autoplay loop muted>
+                <source src="./demo_video/superman/scarlett-gstep-200_00001.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+    </div>  
+    
+    <div style="text-align: left; font-size: 18px;">
+        <span style="background-color: #fcde44;">
+            Can't wait to create your own Text-to-Video? --> <a href="https://github.com/Zhen-Dong/Magic-ComfyUI">Magic-ComfyUI</a>
+        </span>
+        <br>
+        <br>
+    </div>
+
+    </p>
+        
+    
+    <div class="header-container">
+        <h2>Cherry Blossoms</h2> 
+        <a href="./cherry_blossoms.html" class="view-more-button">View More</a>
+    </div>
+    
+    <p style="font-size:large">
+    <div class="videos-flex-container">
+        
+        <div class="video-container-demo-small">
+            <div class="overlay">Beyonce</div>
+            <video width="320" height="240" autoplay loop muted>
+                <source src="./demo_video/cherry_blossoms/beyonce-gstep-600_00001.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        <div class="video-container-demo-small">
+            <div class="overlay">Scarlett Johansson</div>
+            <video width="320" height="240" autoplay loop muted>
+                <source src="./demo_video/cherry_blossoms/scarlett-gstep-600_00001.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        <div class="video-container-demo-small">
+            <div class="overlay">Taylor Swift</div>
+            <video width="320" height="240" autoplay loop muted>
+                <source src="./demo_video/cherry_blossoms/taylor-gstep-600_00001.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        <div class="video-container-demo-small">
+            <div class="overlay">Lisa</div>
+            <video width="320" height="240" autoplay loop muted>
+                <source src="./demo_video/cherry_blossoms/lisa-gstep-600_00001.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        <div class="video-container-demo-small">
+            <div class="overlay">Marilyn Monroe</div>
+            <video width="320" height="240" autoplay loop muted>
+                <source src="./demo_video/cherry_blossoms/monroe-gstep-600_00001.mp4" type="video/mp4">
+            </video>
+        </div>
+    
+    </div>
+    
+    <div style="text-align: left; font-size: 18px;">
+        <span style="background-color: #fcde44;">
+            Can't wait to create your own Text-to-Video? --> <a href="https://github.com/Zhen-Dong/Magic-ComfyUI">Magic-ComfyUI</a>
+        </span>
+        <br>
+        <br>
+    </div>
+    </p>
+    
+    
+    <div class="header-container">
+        <h2>Walking</h2> 
+        <a href="./walking.html" class="view-more-button">View More</a>
+    </div>
+    
+    <p style="font-size:large">
+    <div class="videos-flex-container">
+    
+        <div class="video-container-demo-small">
+            <div class="overlay">Beyonce</div>
+            <video width="320" height="240" autoplay loop muted>
+                <source src="./demo_video/walking/beyonce-gstep-200_00001.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        <div class="video-container-demo-small">
+            <div class="overlay">Harry Potter</div>
+            <video width="320" height="240" autoplay loop muted>
+                <source src="./demo_video/walking/harry-gstep-200_00001.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        <div class="video-container-demo-small">
+            <div class="overlay">Hermione Granger</div>
+            <video width="320" height="240" autoplay loop muted>
+                <source src="./demo_video/walking/hermione-gstep-600_00001.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        <div class="video-container-demo-small">
+            <div class="overlay">Lisa</div>
+            <video width="320" height="240" autoplay loop muted>
+                <source src="./demo_video/walking/lisa-gstep-200_00001.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        <div class="video-container-demo-small">
+            <div class="overlay">Taylor Swift</div>
+            <video width="320" height="240" autoplay loop muted>
+                <source src="./demo_video/walking/taylor-gstep-200_00001.mp4" type="video/mp4">
+            </video>
+        </div>
+    
+    </div>
+    
+    <div style="text-align: left; font-size: 18px;">
+        <span style="background-color: #fcde44;">
+            Can't wait to create your own Text-to-Video? --> <a href="https://github.com/Zhen-Dong/Magic-ComfyUI">Magic-ComfyUI</a>
+        </span>
+        <br>
+        <br>
+    </div>
+    </p>
+    
+    
+    <div class="header-container">
+        <h2>Northern Lights</h2> 
+        <a href="./northern_lights.html" class="view-more-button">View More</a>
+    </div>
+    
+    <p style="font-size:large">
+    <div class="videos-flex-container">
+    
+        <div class="video-container-demo-small">
+            <div class="overlay">Elon Musk</div>
+            <video width="320" height="240" autoplay loop muted>
+                <source src="./demo_video/northern_lights/musk-gstep-200_00001.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        <div class="video-container-demo-small">
+            <div class="overlay">Barack Obama</div>
+            <video width="320" height="240" autoplay loop muted>
+                <source src="./demo_video/northern_lights/obama-gstep-200_00001.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        <div class="video-container-demo-small">
+            <div class="overlay">Marilyn Monroe</div>
+            <video width="320" height="240" autoplay loop muted>
+                <source src="./demo_video/northern_lights/monroe-gstep-200_00001.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        <div class="video-container-demo-small">
+            <div class="overlay">Joe Biden</div>
+            <video width="320" height="240" autoplay loop muted>
+                <source src="./demo_video/northern_lights/biden-gstep-200_00001.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        <div class="video-container-demo-small">
+            <div class="overlay">Scarlett Johansson</div>
+            <video width="320" height="240" autoplay loop muted>
+                <source src="./demo_video/northern_lights/scarlett-gstep-200_00001.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+    </div>
+    
+    <div style="text-align: left; font-size: 18px;">
+        <span style="background-color: #fcde44;">
+            Can't wait to create your own Text-to-Video? --> <a href="https://github.com/Zhen-Dong/Magic-ComfyUI">Magic-ComfyUI</a>
+        </span>
+        <br>
+        <br>
+    </div>
+    </p>
+    
+    
+    <div class="header-container">
+        <h2>Desert</h2> 
+        <a href="./desert.html" class="view-more-button">View More</a>
+    </div>
+    
+    <p style="font-size:large">
+    <div class="videos-flex-container">
+    
+        <div class="video-container-demo-small">
+            <div class="overlay">Yoshua Bengio</div>
+            <video width="320" height="240" autoplay loop muted>
+                <source src="./demo_video/desert/bengio-gstep-200_00001.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        <div class="video-container-demo-small">
+            <div class="overlay">Geoffrey Hinton</div>
+            <video width="320" height="240" autoplay loop muted>
+                <source src="./demo_video/desert/hinton-gstep-200_00001.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        <div class="video-container-demo-small">
+            <div class="overlay">Dwayne Johnson</div>
+            <video width="320" height="240" autoplay loop muted>
+                <source src="./demo_video/desert/johnson-gstep-200_00001.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        <div class="video-container-demo-small">
+            <div class="overlay">Elon Musk</div>
+            <video width="320" height="240" autoplay loop muted>
+                <source src="./demo_video/desert/musk-gstep-200_00001.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        <div class="video-container-demo-small">
+            <div class="overlay">Scarlett Johansson</div>
+            <video width="320" height="240" autoplay loop muted>
+                <source src="./demo_video/desert/scarlett-gstep-200_00001.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+    </div>
+    
+    <div style="text-align: left; font-size: 18px;">
+        <span style="background-color: #fcde44;">
+            Can't wait to create your own Text-to-Video? --> <a href="https://github.com/Zhen-Dong/Magic-ComfyUI">Magic-ComfyUI</a>
+        </span>
+        <br>
+        <br>
+    </div>
+    </p>
+    
+</div>
+
+</div>
+    <footer>
+        <div class="container-fluid">
+            <div class="col-md-12">
+                <p>Copyright &copy; ByteDance
+                | This template was originally designed by templatemo</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+    <script src="js/vendor/bootstrap.min.js"></script>
+    
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+
+    
+</body>
+</html>
